@@ -16,6 +16,8 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: techCV.tex  # Your LaTeX file name
+          compiler: xelatex  # Change this to xelatex or lualatex
+          args: -file-line-error -halt-on-error -interaction=nonstopmode
 
       - name: Commit and Push PDF
         run: |
