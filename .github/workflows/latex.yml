@@ -1,15 +1,25 @@
-name: Compile LaTeX Document
+name: Compile and Deploy LaTeX Document
 on:
   push:
     branches:
-      - main  # or your default branch name
+      - main
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: your-document.tex  # Replace with your main LaTeX file name
+          root_file: techCV.tex  # Your LaTeX file name
+
+      - name: Commit and Push PDF
+        run: |
+          mkdir -p docs
+          cp techCV.pdf docs/techCV.pdf  # Copy the PDF to the docs folder
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/techCV.pdf
+          git commit -m "Update PDF in docs folder"
+          git push
