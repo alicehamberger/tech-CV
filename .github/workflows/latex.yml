@@ -27,4 +27,6 @@ jobs:
           git config --local user.name "GitHub Action"
           git add docs/techCV.pdf
           git commit -m "Update PDF in docs folder"
-          git push https://alicehamberger:${{ secrets.GH_PAT }}@github.com/alicehamberger/tech-CV.git
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/alicehamberger/tech-CV.git
+
+        # git push https://alicehamberger:${{ secrets.GH_PAT }}@github.com/alicehamberger/tech-CV.git
